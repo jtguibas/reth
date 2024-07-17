@@ -62,9 +62,23 @@ cfg_if::cfg_if! {
             /// This does not ensure that the `s` value in the signature is low, and _just_ wraps the
             /// underlying secp256k1 library.
             pub fn recover_signer_unchecked(sig: &[u8; 65], msg: &[u8; 32]) -> Result<Address, Error> {
-                let recovered_key = sp1_precompiles::secp256k1::ecrecover(sig, msg)?;
-                let mut hash = keccak256(&recovered_key[1..]);
-                hash[..12].fill(0);
+                let mut signature = Signature::from_slice(&sig[0..64])?;
+                let mut recid = sig[64];
+
+                // normalize signature and flip recovery id if needed.
+                if let Some(sig_normalized) = signature.normalize_s() {
+                    signature = sig_normalized;
+                    recid ^= 1;
+                }
+                let recid = RecoveryId::from_byte(recid).expect("recovery ID is valid");
+
+                // recover key
+                let recovered_key = VerifyingKey::recover_from_prehash(&msg[..], &signature, recid)?;
+                Ok(public_key_to_address(recovered_key))
+                
+                // let recovered_key = sp1_precompiles::secp256k1::ecrecover(sig, msg)?;
+                // let mut hash = keccak256(&recovered_key[1..]);
+                // hash[..12].fill(0);
             }
 
             /// Converts a public key into an ethereum address by hashing the encoded public key with

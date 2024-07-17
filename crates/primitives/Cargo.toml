@@ -54,7 +54,7 @@ arbitrary = { workspace = true, features = ["derive"], optional = true }
 proptest = { workspace = true, optional = true }
 # proptest-derive = { workspace = true, optional = true }
 cfg-if = "1.0.0"
-sp1-lib = { git = "https://github.com/succinctlabs/sp1.git", branch = "dev", features = ["secp256k1"] }
+# sp1-lib = { git = "https://github.com/succinctlabs/sp1.git", branch = "dev", features = ["secp256k1"] }
 
 [dev-dependencies]
 # eth
