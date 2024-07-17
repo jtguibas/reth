@@ -8,9 +8,10 @@ use alloy_trie::{
     EMPTY_ROOT_HASH,
 };
 use reth_primitives_traits::Account;
+use serde::{Deserialize, Serialize};
 
 /// The merkle proof with the relevant account info.
-#[derive(PartialEq, Eq, Debug)]
+#[derive(PartialEq, Eq, Debug, Clone, Serialize, Deserialize)]
 pub struct AccountProof {
     /// The address associated with the account.
     pub address: Address,
@@ -76,7 +77,7 @@ impl AccountProof {
 }
 
 /// The merkle proof of the storage entry.
-#[derive(PartialEq, Eq, Default, Debug)]
+#[derive(PartialEq, Eq, Default, Debug, Clone, Serialize, Deserialize)]
 pub struct StorageProof {
     /// The raw storage key.
     pub key: B256,

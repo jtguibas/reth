@@ -17,7 +17,10 @@ mod traits;
 pub use traits::*;
 
 /// Provider trait implementations.
+#[cfg(feature = "providers")]
 pub mod providers;
+
+#[cfg(feature = "providers")]
 pub use providers::{
     DatabaseProvider, DatabaseProviderRO, DatabaseProviderRW, HistoricalStateProvider,
     HistoricalStateProviderRef, LatestStateProvider, LatestStateProviderRef, ProviderFactory,

@@ -346,7 +346,7 @@ reth-primitives-traits = { path = "crates/primitives-traits" }
 reth-provider = { path = "crates/storage/provider" }
 reth-prune = { path = "crates/prune/prune" }
 reth-prune-types = { path = "crates/prune/types" }
-reth-revm = { path = "crates/revm", default-features = false, features = ["std", "c-kzg"] }
+reth-revm = { path = "crates/revm", default-features = false, features = ["std"] }
 reth-rpc = { path = "crates/rpc/rpc" }
 reth-rpc-api = { path = "crates/rpc/rpc-api" }
 reth-rpc-api-testing-util = { path = "crates/rpc/rpc-testing-util" }
@@ -375,15 +375,13 @@ reth-trie-common = { path = "crates/trie/common" }
 reth-trie-parallel = { path = "crates/trie/parallel" }
 
 # revm
-revm = { version = "11.0.0", features = [
-    "std",
-    "secp256k1",
-    "blst",
-], default-features = false }
-revm-primitives = { version = "6.0.0", features = [
+revm = { path = "../bluealloy-revm/crates/revm", version = "11.0.0", features = [
     "std",
 ], default-features = false }
-revm-inspectors = "0.4"
+revm-primitives = { path = "../bluealloy-revm/crates/primitives", version = "6.0.0", features = [
+    "std",
+], default-features = false }
+revm-inspectors = { path = "../revm-inspectors", version = "0.4" }
 
 # eth
 alloy-chains = "0.1.15"

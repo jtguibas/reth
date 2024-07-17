@@ -77,7 +77,7 @@ pub struct TriePrefixSets {
 /// ```
 #[derive(Debug, Default, Clone)]
 pub struct PrefixSetMut {
-    keys: Vec<Nibbles>,
+    pub keys: Vec<Nibbles>,
     sorted: bool,
     index: usize,
 }
