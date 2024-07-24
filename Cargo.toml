@@ -375,13 +375,13 @@ reth-trie-common = { path = "crates/trie/common" }
 reth-trie-parallel = { path = "crates/trie/parallel" }
 
 # revm
-revm = { path = "../bluealloy-revm/crates/revm", version = "11.0.0", features = [
+revm = { git = "https://github.com/0xWOLAND/bluealloy-revm.git", branch = "john/rsp-8e9e6ac", features = [
     "std",
 ], default-features = false }
-revm-primitives = { path = "../bluealloy-revm/crates/primitives", version = "6.0.0", features = [
+revm-primitives = { git = "https://github.com/0xWOLAND/bluealloy-revm.git", branch = "john/rsp-8e9e6ac", features = [
     "std",
 ], default-features = false }
-revm-inspectors = { path = "../revm-inspectors", version = "0.4" }
+revm-inspectors = { git = "https://github.com/paradigmxyz/revm-inspectors", tag = "v0.4.0" }
 
 # eth
 alloy-chains = "0.1.15"
